@@ -1,24 +1,28 @@
 package com.huko.text.adventure.window;
 
-public class StatCanvas extends Canvas implements Runnable {
+public class StatCanvas extends Canvas {
 
 	public StatCanvas() {
 		super();
-		Thread th = new Thread(this);
-		th.start();
+//		Thread th = new Thread(this);
+//		th.start();
 	}
 
-	@Override
-	public void run() {
-			if (graphics != null) {
-				clear();
-				draw();
-			}
-			repaint();
-	}
+//	@Override
+//	public void run() {
+//		if (graphics != null) {
+//			clear();
+//			draw();
+//		}
+//		repaint();
+//	}
 
 	public void draw() {
-		GameWindow.inventory.draw(graphics);
+		if (graphics != null) {
+			clear();
+			GameWindow.inventory.draw(graphics);
+		}
+		repaint();
 	}
 
 }

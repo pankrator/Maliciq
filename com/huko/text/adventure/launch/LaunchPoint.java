@@ -18,6 +18,7 @@ public class LaunchPoint {
 		gw.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gw.setResizable(false);
 		gw.setVisible(true);
+		
 //		gw.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		
 	}

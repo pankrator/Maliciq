@@ -26,7 +26,7 @@ public class GameWindow extends JFrame implements KeyListener {
 
 	// The player's object
 	public static Player hero;
-	
+
 	public static Inventory inventory;
 
 	// All objects that can be currently drawn
@@ -45,14 +45,12 @@ public class GameWindow extends JFrame implements KeyListener {
 		setTitle("Game Window");
 		setSize(600, 480);
 
-		//infoPanel = new StatCanvas();
+		infoPanel = new StatCanvas();
 		canvas = new WorldCanvas();
-		
 
-//		infoPanel.setPreferredSize(new Dimension(220, 150));
-//		add(infoPanel, BorderLayout.WEST);
+		infoPanel.setPreferredSize(new Dimension(220, 150));
+		add(infoPanel, BorderLayout.WEST);
 		add(canvas, BorderLayout.CENTER);
-
 	}
 
 	/**
@@ -64,7 +62,7 @@ public class GameWindow extends JFrame implements KeyListener {
 		addKeyListener(this);
 
 		for (int i = 0; i <= 15; i++) {
-			for(int j = 0; j <= 15; j++) {
+			for (int j = 0; j <= 15; j++) {
 				map[i][j] = new Map();
 			}
 		}
@@ -74,12 +72,11 @@ public class GameWindow extends JFrame implements KeyListener {
 		visibleObjects = new ArrayList<GameObject>();
 
 		hero = new Player(0, 0, 100);
-//		inventory = new Inventory();
+		inventory = new Inventory();
 
 		visibleObjects.add(new Enemy(5, 5, 100, 1));
 		visibleObjects.add(new Enemy(1, 8, 100, 1));
 		visibleObjects.add(new Enemy(7, 2, 100, 1));
-
 	}
 
 	/**
@@ -101,6 +98,11 @@ public class GameWindow extends JFrame implements KeyListener {
 
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			hero.move(0, 1);
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_A) {
+			inventory.addBag();
+			infoPanel.draw();
 		}
 
 	}

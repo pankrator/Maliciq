@@ -22,6 +22,7 @@ public abstract class Canvas extends JComponent {
 
 	public Canvas() {
 		setDoubleBuffered(false);
+		repaint();
 	}
 
 	@Override
@@ -31,8 +32,6 @@ public abstract class Canvas extends JComponent {
 			graphics = (Graphics2D) image.getGraphics();
 			graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 					RenderingHints.VALUE_ANTIALIAS_ON);
-
-			clear();
 		}
 		g.drawImage(image, 0, 0, null);
 	}
