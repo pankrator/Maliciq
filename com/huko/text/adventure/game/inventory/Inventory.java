@@ -29,6 +29,11 @@ public class Inventory implements Drawable {
 			bags.add(new Bag());
 		}
 	}
+	
+	public void addBag() {
+		this.numOfBags++;
+		bags.add(new Bag());
+	}
 
 	@Override
 	public void draw(Graphics2D g) {
