@@ -22,4 +22,10 @@ public class DummyEnemy extends Enemy {
 	getWanderBehaviour().moveWandering();
     }
 
+	@Override
+	public void shoot() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

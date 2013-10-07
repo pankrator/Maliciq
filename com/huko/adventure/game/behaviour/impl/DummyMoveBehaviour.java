@@ -38,14 +38,6 @@ public class DummyMoveBehaviour implements MoveStrategy {
 	    if (performOn.placeFree(targetx, targety)) {
 		
 		performOn.moveToGrid(targetx, targety);
-		
-//		FIXME Find more cultural solution for the next 6 rows
-//		GameWindow.nodeMap.getNode(performOn.getX(), performOn.getY()).setFree(true);
-//		GameWindow.nodeMap.getNode(performOn.getX(), performOn.getY()).removeObj(performOn);
-//		performOn.setX(targetx);
-//		performOn.setY(targety);
-//		GameWindow.nodeMap.getNode(performOn.getX(), performOn.getY()).setFree(false);
-//		GameWindow.nodeMap.getNode(performOn.getX(), performOn.getY()).addObj(performOn);
 	    }
 	    return;
 	}

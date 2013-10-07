@@ -1,6 +1,7 @@
 package com.huko.adventure.game.entities;
 
 import com.huko.adventure.game.behaviour.impl.AStarMoveBehaviour;
+import com.huko.adventure.game.behaviour.impl.SimpleShootBehaviour;
 import com.huko.adventure.game.behaviour.impl.WandererBehaviour;
 import com.huko.adventure.window.GameWindow;
 
@@ -10,6 +11,7 @@ public class SmartEnemy extends Enemy {
 	super(x, y, health);
 	setMoveBehaviour(new AStarMoveBehaviour(this));
 	setWanderBehaviour(new WandererBehaviour(this, 5));
+	setShootBehaviour(new SimpleShootBehaviour(this));
     }
 
     @Override
@@ -21,5 +23,10 @@ public class SmartEnemy extends Enemy {
     public void wander() {
 	getWanderBehaviour().moveWandering();
     }
+
+	@Override
+	public void shoot() {
+		getShootBehaviour().shoot();
+	}
 
 }

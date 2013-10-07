@@ -71,16 +71,6 @@ public class AStarMoveBehaviour implements MoveStrategy {
 	    Node place = path.pop();
 	    
 	    performOn.moveToGrid(place.getX(), place.getY());
-	    
-	    //FIXME Very important to find different solution for next code
-//	    GameWindow.nodeMap.getNode(performOn.getX(), performOn.getY()).setFree(true);
-//	    GameWindow.nodeMap.getNode(performOn.getX(), performOn.getY()).removeObj(performOn);
-//	    GameWindow.nodeMap.getNode(performOn.getX(), performOn.getY()).setCost(1);
-//	    performOn.setX(place.getX());
-//	    performOn.setY(place.getY());
-//	    GameWindow.nodeMap.getNode(performOn.getX(), performOn.getY()).setFree(false);
-//	    GameWindow.nodeMap.getNode(performOn.getX(), performOn.getY()).addObj(performOn);
-//	    GameWindow.nodeMap.getNode(performOn.getX(), performOn.getY()).setCost(0);
 	    movementTimer = System.nanoTime();
 	}
 

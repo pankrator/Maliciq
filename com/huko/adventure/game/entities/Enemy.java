@@ -4,100 +4,117 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import com.huko.adventure.game.behaviour.MoveStrategy;
+import com.huko.adventure.game.behaviour.ShooterStrategy;
 import com.huko.adventure.game.behaviour.WandererStrategy;
 import com.huko.adventure.window.GameWindow;
 
-public abstract class Enemy extends LivingEntity implements Drawable, Updateable {
+public abstract class Enemy extends LivingEntity implements Drawable,
+		Updateable {
 
-    protected enum States {
-	WANDERING, ATTACKING, ESCAPING, STAYING, COMING
-    }
-
-    private States state;
-
-    private int minDistanceToAwake;
-
-    private MoveStrategy moveBehaviour;
-
-    private WandererStrategy wanderBehaviour;
-
-    public Enemy(int x, int y, int health) {
-	super(x, y, health);
-	this.state = States.STAYING;
-	this.minDistanceToAwake = 10;
-    }
-
-    @Override
-    public void draw(Graphics2D g) {
-	g.setColor(Color.RED);
-	g.drawRect(x * 32, y * 32, 32, 32);
-    }
-
-    @Override
-    public void update() {
-
-	if (state == States.STAYING) {
-	    if (distanceToObject(GameWindow.hero) < minDistanceToAwake
-		    && distanceToObject(GameWindow.hero) > 1)
-		setState(States.COMING);
-	    return;
+	protected enum States {
+		WANDERING, ATTACKING, ESCAPING, STAYING, COMING
 	}
 
-	if (state == States.COMING) {
-	    if (distanceToObject(GameWindow.hero) > minDistanceToAwake + 5) {
-		setState(States.STAYING);
-		return;
-	    }
+	private States state;
 
-	    if (distanceToObject(GameWindow.hero) <= 1) {
-		setState(States.STAYING);
-	    }
+	private int minDistanceToAwake;
 
-	    if (moveBehaviour != null)
-		move();
+	private MoveStrategy moveBehaviour;
 
+	private WandererStrategy wanderBehaviour;
+
+	private ShooterStrategy shootBehaviour;
+
+	public Enemy(int x, int y, int health) {
+		super(x, y, health);
+		this.state = States.STAYING;
+		this.minDistanceToAwake = 10;
 	}
 
-	if (state == States.WANDERING) {
-	    if (wanderBehaviour != null)
-		wander();
+	@Override
+	public void draw(Graphics2D g) {
+		g.setColor(Color.RED);
+		g.drawRect(x * 32, y * 32, 32, 32);
 	}
-    }
 
-    public States getState() {
-	return state;
-    }
+	@Override
+	public void update() {
 
-    public void setState(States state) {
-	this.state = state;
-    }
+		if (state == States.STAYING) {
+			if (distanceToObject(GameWindow.hero) < minDistanceToAwake
+					&& distanceToObject(GameWindow.hero) > 1)
+				setState(States.COMING);
+			return;
+		}
 
-    public WandererStrategy getWanderBehaviour() {
-	return wanderBehaviour;
-    }
+		if (state == States.COMING) {
+			if (distanceToObject(GameWindow.hero) > minDistanceToAwake + 5) {
+				setState(States.STAYING);
+				return;
+			}
 
-    public void setWanderBehaviour(WandererStrategy wanderBehaviour) {
-	this.wanderBehaviour = wanderBehaviour;
-    }
+			if (distanceToObject(GameWindow.hero) <= 1) {
+				setState(States.STAYING);
+			}
 
-    public MoveStrategy getMoveBehaviour() {
-	return moveBehaviour;
-    }
+			if (moveBehaviour != null)
+				move();
 
-    public void setMoveBehaviour(MoveStrategy moveBehaviour) {
-	this.moveBehaviour = moveBehaviour;
-    }
+			if (shootBehaviour != null)
+				shoot();
 
-    public int getMinDistanceToAwake() {
-	return minDistanceToAwake;
-    }
+		}
 
-    public void setMinDistanceToAwake(int minDistanceToAwake) {
-	this.minDistanceToAwake = minDistanceToAwake;
-    }
+		if (state == States.WANDERING) {
+			if (wanderBehaviour != null)
+				wander();
+		}
+	}
 
-    public abstract void move();
+	public States getState() {
+		return state;
+	}
 
-    public abstract void wander();
+	public void setState(States state) {
+		this.state = state;
+	}
+
+	public WandererStrategy getWanderBehaviour() {
+		return wanderBehaviour;
+	}
+
+	public void setWanderBehaviour(WandererStrategy wanderBehaviour) {
+		this.wanderBehaviour = wanderBehaviour;
+	}
+
+	public MoveStrategy getMoveBehaviour() {
+		return moveBehaviour;
+	}
+
+	public void setMoveBehaviour(MoveStrategy moveBehaviour) {
+		this.moveBehaviour = moveBehaviour;
+	}
+
+	public int getMinDistanceToAwake() {
+		return minDistanceToAwake;
+	}
+
+	public void setMinDistanceToAwake(int minDistanceToAwake) {
+		this.minDistanceToAwake = minDistanceToAwake;
+	}
+
+	public ShooterStrategy getShootBehaviour() {
+		return shootBehaviour;
+	}
+
+	public void setShootBehaviour(ShooterStrategy shootBehaviour) {
+		this.shootBehaviour = shootBehaviour;
+	}
+
+	public abstract void move();
+
+	public abstract void shoot();
+
+	public abstract void wander();
 
 }

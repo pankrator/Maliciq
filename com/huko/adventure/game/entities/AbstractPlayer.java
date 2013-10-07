@@ -60,6 +60,7 @@ public class AbstractPlayer extends LivingEntity implements Drawable {
     public void fire() {
 	if ((System.nanoTime() - lastFire) / 1000000 > fireRate) {
 	    lastFire = System.nanoTime();
+	    //TODO create a new method for firing a bullet
 	    GameWindow.createInstance(new Bullet(getX() * 32 + 8, getY() * 32 + 8, this.dir, 1000,
 		    this));
 	}
